@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     const resObj = {
         success: false
     }
-    if (eventList.length > 0) {
+    if (menuList.length > 0) {
         resObj.success = true;
         resObj.event = menuList;
 
