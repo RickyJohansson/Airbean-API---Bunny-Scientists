@@ -25,7 +25,6 @@ router.get('/', async (req, res) => {
             orderIsFor: accountName,
         }
 
-        console.log(req.body.cart.amount)
         const result = await createOrder(order)
 
         if (result[0].length <= 0) {

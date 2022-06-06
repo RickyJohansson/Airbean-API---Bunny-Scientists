@@ -1,4 +1,4 @@
-const { createAccount, compareCredentials, checkIfAccountsExists } = require('../model/accountdb')
+const { createAccount, compareCredentials, checkIfAccountsExists, showOrderHistory } = require('../model/accountdb')
 
 const { Router } = require('express');
 
@@ -34,7 +34,6 @@ router.post('/signup', async (req, res) => {
     }
     if (result.length === 0) {
         const result = await createAccount(credentials);
-        console.log(result);
         if (result) {
             resObj.success = true;
             resObj.message = `Account ${credentials.username} created.`;
@@ -45,5 +44,23 @@ router.post('/signup', async (req, res) => {
     }
     res.json(resObj)
 });
+
+router.get('/orderhistory', async (req, res) => {
+    const resObj = {
+        success: false
+    }
+
+    if (req.headers.username) {
+        const result = await showOrderHistory(req.headers.username);
+        resObj.success = true;
+        resObj.message = "Här är din orderhistorik"
+        resObj.order = result;
+
+    } else {
+        resObj.message = "Du har ingen orderhistorik"
+    }
+    res.json(resObj);
+
+})
 
 module.exports = router;
