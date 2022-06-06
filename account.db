@@ -1,1 +1,3 @@
-{"username":"William2","email":"william@hotmaail.se","password":"pw65123","orders":[],"_id":"5QUnCTfyWLFtbpcC"}
+{"username":"William2","email":"william@hotmaail.se","password":"pw65123","orders":[],"_id":"gs41dpoifaE2Mn5i"}
+{"username":"William2","email":"william@hotmaail.se","password":"pw65123","orders":[{"orderItems":{"items":[{"id":"2","title":"Caffè Doppio","amount":1},{"id":3,"title":"Cappuccino","amount":1}]},"orderId":"93523","orderIsFor":"William2"}],"_id":"gs41dpoifaE2Mn5i"}
+{"username":"William2","email":"william@hotmaail.se","password":"pw65123","orders":[{"orderItems":{"items":[{"id":"2","title":"Caffè Doppio","amount":1},{"id":3,"title":"Cappuccino","amount":1}]},"orderId":"93523","orderIsFor":"William2"},{"orderItems":{"items":[{"id":"2","title":"Caffè Doppio","amount":1},{"id":3,"title":"Cappuccino","amount":5}]},"orderId":"161675","orderIsFor":"William2"}],"_id":"gs41dpoifaE2Mn5i"}

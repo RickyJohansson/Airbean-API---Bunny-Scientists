@@ -7,16 +7,15 @@ app.use(express.json())
 const accountRouter = require('./routes/account')
 app.use('/api/account', accountRouter)
 const menuRouter = require('./routes/menu')
-app.use('/api/events', menuRouter)
+app.use('/api/menu', menuRouter)
+const orderRouter = require('./routes/order')
+app.use('/api/order', orderRouter)
 
 // const { createAccount } = require('./model/db');
 
 
 
 // app.use(express.json());    gör om requests mot bodyn till JSON, så vi inte får buggen vid request.body;
-
-
-
 
 
 app.listen(PORT, () => {

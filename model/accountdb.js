@@ -26,5 +26,18 @@ async function compareCredentials(credentials) {
     return result;
 }
 
+async function getOrder(accountName, order) {
+    console.log(accountName);
+    console.log(order);
+    await database.update({ username: accountName },
+        { $push: { orders: order } })
+};
 
-module.exports = { createAccount, compareCredentials, checkIfAccountsExists };
+async function showOrderHistory(accountName) {
+    console.log(accountName)
+}
+
+module.exports = {
+    createAccount, compareCredentials, checkIfAccountsExists,
+    getOrder
+};

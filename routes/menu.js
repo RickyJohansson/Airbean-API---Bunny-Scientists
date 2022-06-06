@@ -1,5 +1,4 @@
 const { getMenu } = require('../model/menudb')
-
 const { Router } = require('express');
 
 const router = Router();
@@ -12,7 +11,7 @@ router.get('/', async (req, res) => {
     }
     if (menuList.length > 0) {
         resObj.success = true;
-        resObj.event = menuList;
+        resObj.order = menuList;
 
     }
     else {
@@ -20,5 +19,8 @@ router.get('/', async (req, res) => {
     }
     res.json(resObj)
 });
+
+
+
 
 module.exports = router;
