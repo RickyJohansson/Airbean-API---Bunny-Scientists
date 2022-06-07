@@ -38,6 +38,7 @@ async function showOrderHistory(accountName) {
     if(result.length > 0) {
         const orderHistory = result[0].orders;
         console.log("accountdb.js - orderHistory", orderHistory);
+        /* RETURNERA ENDAST ORDERNUMMER OCH SUMMAN AV PRISET */
         return orderHistory;
     }
 }

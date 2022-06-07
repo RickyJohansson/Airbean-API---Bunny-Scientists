@@ -33,6 +33,7 @@ router.get('/', async (req, res) => {
             orderIsFor: accountName,
             createdAt: orderTime,
             timeETA: etaTime.toLocaleTimeString(),
+            expired: false, /* ADD FUNCTION TO CHECK IF ETA HAS PASSED. IF PASSED CHANGE VALUE TO TRUE */
         }
 
         const result = await createOrder(order)
