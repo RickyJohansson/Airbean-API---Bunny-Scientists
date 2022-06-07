@@ -36,14 +36,14 @@ json
 ```
 
 Header:      
-username William2         
+username | William2 *(alt. Guest)*        
 Content-Type | application/json
 
 ---
 **localhost:8000/api/account/orderhistory**
 
 Body:         
-no body
+*no body*
 
 Header:   
 Content-Type | application/json
@@ -52,17 +52,23 @@ Content-Type | application/json
 **localhost:8000/api/menu**
 
 Body:       
-no body
+*no body*
 
 Header:        
-no header
+*no header*
 
 
 ---
 **localhost:8000/api/account/login**
 
 Body:       
-no body
+json                 
+```json
+{
+  "username":"William2",
+  "password":"pw65123"
+}
+```
 
 Header:        
-no header
+*no header*
