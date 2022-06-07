@@ -55,6 +55,13 @@ async function showOrderHistory(accountName) {
 
 function refineOrderHistory(orderHistory) {
     let newOrderHistory = orderHistory.filter(order => order.expired = true );
+    /*
+    {
+        sum: sumOfOrder,
+        createdAt: orderTime,
+        orderId: orderNmbr,
+    }
+    */
     return newOrderHistory;
 }
 
