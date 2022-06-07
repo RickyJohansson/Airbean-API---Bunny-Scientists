@@ -3,22 +3,23 @@
 
 TODO: 
 
-[ ] i `order.js`, lägg till en funktion så att expired blir `true` när ETA tiden har passerat.
-
-[ ] i `accountdb.js`, lägg till en funktion så att den endast returnerar summan av varje order +  createdAt + orderId. Exempel:      
+- [ ] i `order.js`, lägg till en funktion så att expired blir `true` när ETA tiden har passerat.
+- [ ] i `accountdb.js`, lägg till en funktion så att den endast returnerar summan av varje order +  createdAt + orderId. Exempel:      
 ```
 {
   sum: sumOfOrder,
-  createdAt: date,
-  orderID: id,
+  createdAt: orderTime,
+  orderId: orderNmbr,
 }
 ```
-
-[ ] skapa en ny endpoint i `accountdb.js` och `account.js` för att få på aktiva ordrar, dvs när `expired` är false.    
+- [ ] skapa en ny endpoint i `accountdb.js` och `account.js` för att få på aktiva ordrar, dvs när `expired` är false.    
+```
 {
-  orderID: id,
-  ETAtiden: tiden,
+  orderId: orderNmbr,
+  timeETA: etaTime.toLocaleTimeString(),
 }
+```
+Glöm inte att lägga in i dokumentationen också!
 
 ---
 ---
