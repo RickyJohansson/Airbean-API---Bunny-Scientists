@@ -35,21 +35,27 @@ async function getOrder(accountName, order) {
 async function showOrderHistory(accountName) {
     const result = await database.find({ username: accountName })
     console.log("accountdb.js - result", result);
+
     if(result.length > 0) {
         const orderHistory = result[0].orders;
-        console.log("accountdb.js - orderHistory", orderHistory);
-        /* RETURNERA ENDAST ORDERNUMMER OCH SUMMAN AV PRISET */
+
+        const date = new Date();
+        console.log("date: ", date);
+
+        for(let order of orderHistory) {
+            if(date > order.timeETA){
+                order.expired = true;
+            }
+        }
+
         let refinedOrderHistory = refineOrderHistory(orderHistory);
-        return orderHistory;
+        return refinedOrderHistory;
     }
 }
 
 function refineOrderHistory(orderHistory) {
-    for(let order of orderHistory) {
-        if(order.expired) {
-            return order;
-        }
-    }
+    let newOrderHistory = orderHistory.filter(order => order.expired = true );
+    return newOrderHistory;
 }
 
 module.exports = {

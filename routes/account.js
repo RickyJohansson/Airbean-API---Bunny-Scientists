@@ -52,8 +52,8 @@ router.get('/orderhistory', async (req, res) => {
     
     if (req.headers.username) {
         const result = await showOrderHistory(req.headers.username);
-        console.log("account.js - result", result);
-        console.log("account.js - req.headers.username", req.headers.username);
+        // console.log("account.js - result", result);
+        // console.log("account.js - req.headers.username", req.headers.username);
         if(result) {
             resObj.success = true;
             resObj.message = "Här är din orderhistorik"

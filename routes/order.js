@@ -10,18 +10,20 @@ router.get('/', async (req, res) => {
     const accountName = req.headers.username;
     const chosenItems = req.body.cart;
     const orderNmbr = randomOrderNmbr();
-    const orderDate = new Date();
-    const orderTime = orderDate.toLocaleTimeString();
+    const date = new Date();
+    
+    const orderDate = new Date(date);
     
     const ETA = randomETAnmbr();
-    const etaTimeUnix = orderDate.setMinutes( orderDate.getMinutes() + ETA );
-    const etaTime = new Date(etaTimeUnix);
+    const ETAdateUnix = date.setMinutes( date.getMinutes() + ETA );
+    const ETAdate = new Date(ETAdateUnix);
     
     const resObj = {
         success: false
     }
     
-
+    console.log("chosenItems: ", chosenItems);
+    
     if (chosenItems.length > 0) {
 
         const order = {
@@ -31,10 +33,10 @@ router.get('/', async (req, res) => {
             },
             orderId: orderNmbr,
             orderIsFor: accountName,
-            createdAt: orderTime,
-            timeETA: etaTime.toLocaleTimeString(),
+            createdAt: orderDate,
+            timeETA: ETAdate,
             expired: false, /* ADD FUNCTION TO CHECK IF ETA HAS PASSED. IF PASSED CHANGE VALUE TO TRUE */
-            totalAmount: sum,
+            totalAmount: 100,
         }
 
         const result = await createOrder(order)
