@@ -33,11 +33,13 @@ async function getOrder(accountName, order) {
 };
 
 async function showOrderHistory(accountName) {
-
     const result = await database.find({ username: accountName })
-    const orderHistory = result[0].orders
-    console.log(orderHistory)
-    return orderHistory;
+    console.log("accountdb.js - result", result);
+    if(result.length > 0) {
+        const orderHistory = result[0].orders;
+        console.log("accountdb.js - orderHistory", orderHistory);
+        return orderHistory;
+    }
 }
 
 module.exports = {

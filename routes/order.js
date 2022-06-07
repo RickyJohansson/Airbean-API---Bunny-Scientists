@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
     const chosenItems = req.body.cart;
     const orderNmbr = randomOrderNmbr();
     const orderDate = new Date();
+    const orderTime = orderDate.toLocaleTimeString();
     
     const ETA = randomETAnmbr();
     const etaTimeUnix = orderDate.setMinutes( orderDate.getMinutes() + ETA );
@@ -19,7 +20,6 @@ router.get('/', async (req, res) => {
     const resObj = {
         success: false
     }
-    
     
 
     if (chosenItems.length > 0) {
@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
             },
             orderId: orderNmbr,
             orderIsFor: accountName,
-            createdAt: orderDate.toLocaleTimeString(),
+            createdAt: orderTime,
             timeETA: etaTime.toLocaleTimeString(),
         }
 
@@ -62,7 +62,7 @@ function randomOrderNmbr() {
 };
 
 function randomETAnmbr() {
-    const randomMinute = Math.floor(Math.random() * 15);
+    const randomMinute = Math.floor((Math.random() * 15)+1);
     return randomMinute;
 }
 

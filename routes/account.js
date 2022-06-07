@@ -49,15 +49,21 @@ router.get('/orderhistory', async (req, res) => {
     const resObj = {
         success: false
     }
-
+    
     if (req.headers.username) {
         const result = await showOrderHistory(req.headers.username);
-        resObj.success = true;
-        resObj.message = "Här är din orderhistorik"
-        resObj.order = result;
-
+        console.log("account.js - result", result);
+        console.log("account.js - req.headers.username", req.headers.username);
+        if(result) {
+            resObj.success = true;
+            resObj.message = "Här är din orderhistorik"
+            resObj.order = result;
+        } else {
+            resObj.success = false;
+            resObj.message = "Användarnamet kunde inte hittas"
+        }
     } else {
-        resObj.message = "Du har ingen orderhistorik"
+        resObj.message = "Logga in för att se din orderhistorik"
     }
     res.json(resObj);
 
