@@ -11,18 +11,15 @@ router.get('/', async (req, res) => {
     const chosenItems = req.body.cart;
     const orderNmbr = randomOrderNmbr();
     const orderDate = new Date();
-    const orderTime = orderDate.toLocaleTimeString();
+    
     const ETA = randomETAnmbr();
+    const etaTimeUnix = orderDate.setMinutes( orderDate.getMinutes() + ETA );
+    const etaTime = new Date(etaTimeUnix);
+    
     const resObj = {
         success: false
     }
-
-    console.log("orderDate: ", orderDate);
-    console.log("orderTime: ", orderTime);
-    console.log("ETA: ", ETA);
-    let etaTime = orderDate.setMinutes( orderDate.getMinutes() + ETA );
-    var date = new Date(etaTime);
-    console.log(date);
+    
     
 
     if (chosenItems.length > 0) {
@@ -34,8 +31,8 @@ router.get('/', async (req, res) => {
             },
             orderId: orderNmbr,
             orderIsFor: accountName,
-            timeETA: `00:${ETA}:00`,
-            createdAt: orderTime
+            createdAt: orderDate.toLocaleTimeString(),
+            timeETA: etaTime.toLocaleTimeString(),
         }
 
         const result = await createOrder(order)
