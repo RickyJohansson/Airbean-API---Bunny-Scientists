@@ -34,6 +34,7 @@ router.get('/', async (req, res) => {
             createdAt: orderTime,
             timeETA: etaTime.toLocaleTimeString(),
             expired: false, /* ADD FUNCTION TO CHECK IF ETA HAS PASSED. IF PASSED CHANGE VALUE TO TRUE */
+            totalAmount: sum,
         }
 
         const result = await createOrder(order)

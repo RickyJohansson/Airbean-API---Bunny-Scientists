@@ -39,7 +39,16 @@ async function showOrderHistory(accountName) {
         const orderHistory = result[0].orders;
         console.log("accountdb.js - orderHistory", orderHistory);
         /* RETURNERA ENDAST ORDERNUMMER OCH SUMMAN AV PRISET */
+        let refinedOrderHistory = refineOrderHistory(orderHistory);
         return orderHistory;
+    }
+}
+
+function refineOrderHistory(orderHistory) {
+    for(let order of orderHistory) {
+        if(order.expired) {
+            return order;
+        }
     }
 }
 
