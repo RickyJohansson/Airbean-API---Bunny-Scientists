@@ -4,7 +4,7 @@
 TODO: 
 
 - [x] i `accountdb.js`, lägg till en funktion så att expired blir `true` när ETA tiden har passerat.
-- [ ] i `accountdb.js`, lägg till en funktion så att den endast returnerar summan av varje order +  createdAt + orderId. Exempel:      
+- [x] i `accountdb.js`, lägg till en funktion så att den endast returnerar summan av varje order +  createdAt + orderId. Exempel:      
 ```
 {
   sum: sumOfOrder,
