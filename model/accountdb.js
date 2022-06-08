@@ -44,6 +44,18 @@ async function showOrderHistory(accountName) {
     }
 }
 
+async function showActiveOrder(accountName) {
+    const result = await database.find({ username: accountName })
+
+    if(result.length > 0) {
+        const orderHistory = setExpiredStatus(result[0].orders);
+
+        let activeOrder = orderHistory.filter(order => order.expired === false );
+        return activeOrder;
+    }
+}
+
+
 function setExpiredStatus(orderHistory) {
     const date = new Date();
     
@@ -55,17 +67,6 @@ function setExpiredStatus(orderHistory) {
         }
     }
     return orderHistory;
-}
-
-async function showActiveOrder(accountName) {
-    const result = await database.find({ username: accountName })
-
-    if(result.length > 0) {
-        const orderHistory = setExpiredStatus(result[0].orders);
-
-        let activeOrder = orderHistory.filter(order => order.expired === false );
-        return activeOrder;
-    }
 }
 
 module.exports = {
