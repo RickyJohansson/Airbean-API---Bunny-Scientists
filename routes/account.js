@@ -1,4 +1,4 @@
-const { createAccount, compareCredentials, checkIfAccountsExists, showOrderHistory } = require('../model/accountdb')
+const { createAccount, compareCredentials, checkIfAccountsExists, showOrderHistory, showActiveOrder } = require('../model/accountdb')
 
 const { Router } = require('express');
 
@@ -68,5 +68,30 @@ router.get('/orderhistory', async (req, res) => {
     res.json(resObj);
 
 })
+
+router.get('/activeorder', async (req, res) => {
+    const resObj = {
+        success: false
+    }
+
+    if (req.headers.username) {
+        const result = await showActiveOrder(req.headers.username);
+        if(result) {
+            resObj.success = true;
+            resObj.message = "Här är din aktiva order"
+            for(let order of result) {
+                console.log("order: ", order);
+                resObj.orderId = order.orderId;
+                resObj.timeETA = order.timeETA;
+            }
+        } else {
+            resObj.success = false;
+            resObj.message = "Användarnamet kunde inte hittas"
+        }
+    } else {
+        resObj.message = "Logga in för att se din aktiva order"
+    }
+    res.json(resObj);
+});
 
 module.exports = router;
