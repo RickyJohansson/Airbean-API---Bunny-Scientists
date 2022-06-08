@@ -1,29 +1,5 @@
 # Airbean-API---Bunny-Scientists
 
-
-TODO: 
-
-- [x] i `accountdb.js`, lägg till en funktion så att expired blir `true` när ETA tiden har passerat.
-- [x] i `accountdb.js`, lägg till en funktion så att den endast returnerar summan av varje order +  createdAt + orderId. Exempel:      
-```
-{
-  sum: sumOfOrder,
-  createdAt: orderTime,
-  orderId: orderNmbr,
-}
-```
-- [ ] skapa en ny endpoint i `accountdb.js` och `account.js` för att få på aktiva ordrar, dvs när `expired` är false.    
-```
-{
-  orderId: orderNmbr,
-  timeETA: etaTime.toLocaleTimeString(),
-}
-```
-Glöm inte att lägga in i dokumentationen också!
-
----
----
-
 ## Debug in insomnia:
 
 ---
