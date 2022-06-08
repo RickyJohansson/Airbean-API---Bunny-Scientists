@@ -46,22 +46,40 @@ router.post('/signup', async (req, res) => {
 });
 
 router.get('/orderhistory', async (req, res) => {
-    const resObj = {
+    const resObj = [{
         success: false
-    }
+    }]
     
     if (req.headers.username) {
         const result = await showOrderHistory(req.headers.username);
+
         if(result) {
-            resObj.success = true;
-            resObj.message = "Här är din orderhistorik"
-            resObj.order = result;
+
+            resObj[0].success = true;
+
+            for(let i = 0; i < result.length; i++) {
+
+                const items = result[i].orderItems.items;
+                let totalPrice = 0;
+                for(let item of items) {
+                    totalPrice += item.price * item.amount;
+                }
+
+                resObj.push({
+                    success: true,
+                    message: "Här är din orderhistorik",
+                    // resObj.order = result;
+                    orderId: result[i].orderId,
+                    createdAt: result[i].createdAt,
+                    totalPrice: totalPrice
+                    });
+            }
         } else {
-            resObj.success = false;
-            resObj.message = "Användarnamet kunde inte hittas"
+            resObj[0].success = false;
+            resObj[0].message = "Användarnamet kunde inte hittas"
         }
     } else {
-        resObj.message = "Logga in för att se din orderhistorik"
+        resObj[0].message = "Logga in för att se din orderhistorik"
     }
     res.json(resObj);
 
