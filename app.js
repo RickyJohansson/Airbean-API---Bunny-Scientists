@@ -1,4 +1,3 @@
-// const fs = require('fs');     //Vill vi kör fs.readFile för json-filen?
 const express = require('express');
 const app = express();
 const PORT = 8000;
@@ -10,13 +9,6 @@ const menuRouter = require('./routes/menu')
 app.use('/api/menu', menuRouter)
 const orderRouter = require('./routes/order')
 app.use('/api/order', orderRouter)
-
-// const { createAccount } = require('./model/db');
-
-
-
-// app.use(express.json());    gör om requests mot bodyn till JSON, så vi inte får buggen vid request.body;
-
 
 app.listen(PORT, () => {
     console.log(`Server is running at port: ${PORT}`);
