@@ -6,7 +6,6 @@ const { createOrder } = require('../model/orderdb')
 const router = Router();
 
 router.get('/', async (req, res) => {
-
     const accountName = req.headers.username;
     const chosenItems = req.body.cart;
     const orderNmbr = randomOrderNmbr();
@@ -35,7 +34,7 @@ router.get('/', async (req, res) => {
             orderIsFor: accountName,
             createdAt: orderDate,
             timeETA: ETAdate,
-            expired: false, /* ADD FUNCTION TO CHECK IF ETA HAS PASSED. IF PASSED CHANGE VALUE TO TRUE */
+            expired: false, 
             totalAmount: 100,
         }
 
@@ -69,6 +68,5 @@ function randomETAnmbr() {
     const randomMinute = Math.floor((Math.random() * 15)+1);
     return randomMinute;
 }
-
 
 module.exports = router;
