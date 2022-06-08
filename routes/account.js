@@ -95,7 +95,11 @@ router.get('/activeorder', async (req, res) => {
         if(result) {
             resObj.success = true;
             resObj.message = "Här är din aktiva order"
-            resObj.order = result;
+            //resObj.order = result;
+            for(let order of result) {
+                resObj.timeETA = order.timeETA;
+                resObj.orderId = order.orderId;
+            }
         } else {
             resObj.success = false;
             resObj.message = "Användarnamet kunde inte hittas"
