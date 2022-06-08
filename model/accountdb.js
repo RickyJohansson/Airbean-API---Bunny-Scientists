@@ -36,56 +36,36 @@ async function showOrderHistory(accountName) {
     const result = await database.find({ username: accountName })
 
     if(result.length > 0) {
-        const orderHistory = result[0].orders;
+        const orderHistory = setExpiredStatus(result[0].orders);
 
-        const date = new Date();
-        console.log("date: ", date);
-
-        for(let order of orderHistory) {
-            if(date > order.timeETA){
-                order.expired = true;
-            } else {
-                order.expired = false;
-            }
-        }
-
-        let refinedOrderHistory = refineOrderHistory(orderHistory);
+        let refinedOrderHistory = orderHistory.filter(order => order.expired === true );
+        
         return refinedOrderHistory;
     }
 }
 
-function refineOrderHistory(orderHistory) {
-    let newOrderHistory = orderHistory.filter(order => order.expired = true );
-    return newOrderHistory;
+function setExpiredStatus(orderHistory) {
+    const date = new Date();
+    
+    for(let order of orderHistory) {
+        if(date > order.timeETA) {
+            order.expired = true;
+        } else {
+            order.expired = false;
+        }
+    }
+    return orderHistory;
 }
 
 async function showActiveOrder(accountName) {
     const result = await database.find({ username: accountName })
 
     if(result.length > 0) {
-        const orderHistory = result[0].orders;
+        const orderHistory = setExpiredStatus(result[0].orders);
 
-        const date = new Date();
-        console.log("date: ", date);
-        console.log("orderHistory: ", orderHistory);
-
-        for(let order of orderHistory) {
-            if(date > order.timeETA){
-                order.expired = true;
-            } else {
-                order.expired = false;
-            }
-        }
-
-        let activeOrder = refineActiveOrders(orderHistory);
+        let activeOrder = orderHistory.filter(order => order.expired === false );
         return activeOrder;
     }
-}
-
-function refineActiveOrders(orderHistory) {
-    let activeOrder = orderHistory.filter(order => order.expired = false );
-    console.log("activeOrder: ", activeOrder);
-    return activeOrder;
 }
 
 module.exports = {

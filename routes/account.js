@@ -52,8 +52,6 @@ router.get('/orderhistory', async (req, res) => {
     
     if (req.headers.username) {
         const result = await showOrderHistory(req.headers.username);
-        // console.log("account.js - result", result);
-        // console.log("account.js - req.headers.username", req.headers.username);
         if(result) {
             resObj.success = true;
             resObj.message = "Här är din orderhistorik"
@@ -79,11 +77,7 @@ router.get('/activeorder', async (req, res) => {
         if(result) {
             resObj.success = true;
             resObj.message = "Här är din aktiva order"
-            for(let order of result) {
-                console.log("order: ", order);
-                resObj.orderId = order.orderId;
-                resObj.timeETA = order.timeETA;
-            }
+            resObj.order = result;
         } else {
             resObj.success = false;
             resObj.message = "Användarnamet kunde inte hittas"
