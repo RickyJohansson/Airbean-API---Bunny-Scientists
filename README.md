@@ -51,10 +51,12 @@ json
 {"cart": [
     {"id": "2",
     "title": "Caffè Doppio",
+    "price": 49,
     "amount": 1},
 {
   "id": 3,
   "title": "Cappuccino",
+  "price": 49,
     "amount": 2}
 ]}
 ```
