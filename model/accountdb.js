@@ -34,38 +34,41 @@ async function getOrder(accountName, order) {
 
 async function showOrderHistory(accountName) {
     const result = await database.find({ username: accountName })
-    console.log("accountdb.js - result", result);
 
     if(result.length > 0) {
-        const orderHistory = result[0].orders;
+        const orderHistory = setExpiredStatus(result[0].orders);
 
-        const date = new Date();
-        console.log("date: ", date);
-
-        for(let order of orderHistory) {
-            if(date > order.timeETA){
-                order.expired = true;
-            }
-        }
-
-        let refinedOrderHistory = refineOrderHistory(orderHistory);
+        let refinedOrderHistory = orderHistory.filter(order => order.expired === true );
+        
         return refinedOrderHistory;
     }
 }
 
-function refineOrderHistory(orderHistory) {
-    let newOrderHistory = orderHistory.filter(order => order.expired = true );
-    /*
-    {
-        sum: sumOfOrder,
-        createdAt: orderTime,
-        orderId: orderNmbr,
+function setExpiredStatus(orderHistory) {
+    const date = new Date();
+    
+    for(let order of orderHistory) {
+        if(date > order.timeETA) {
+            order.expired = true;
+        } else {
+            order.expired = false;
+        }
     }
-    */
-    return newOrderHistory;
+    return orderHistory;
+}
+
+async function showActiveOrder(accountName) {
+    const result = await database.find({ username: accountName })
+
+    if(result.length > 0) {
+        const orderHistory = setExpiredStatus(result[0].orders);
+
+        let activeOrder = orderHistory.filter(order => order.expired === false );
+        return activeOrder;
+    }
 }
 
 module.exports = {
     createAccount, compareCredentials, checkIfAccountsExists,
-    getOrder, showOrderHistory
+    getOrder, showOrderHistory, showActiveOrder
 };

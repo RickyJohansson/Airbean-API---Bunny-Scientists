@@ -57,7 +57,7 @@ json
   "id": 3,
   "title": "Cappuccino",
   "price": 49,
-    "amount": 2}
+  "amount": 2}
 ]}
 ```
 
@@ -72,7 +72,7 @@ Body:
 *no body*
 
 Header:   
-Content-Type | application/json
+username | William2     
 
 ---
 **localhost:8000/api/menu**
