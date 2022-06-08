@@ -51,11 +51,13 @@ json
 {"cart": [
     {"id": "2",
     "title": "Caffè Doppio",
+    "price": 49,
     "amount": 1},
 {
   "id": 3,
   "title": "Cappuccino",
-    "amount": 2}
+  "price": 49,
+  "amount": 2}
 ]}
 ```
 
@@ -70,7 +72,7 @@ Body:
 *no body*
 
 Header:   
-Content-Type | application/json
+username | William2     
 
 ---
 **localhost:8000/api/menu**
